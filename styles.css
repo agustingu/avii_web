@@ -295,6 +295,12 @@ h1 em {
   display: flex;
   flex-direction: column;
 }
+.plans-single {
+  grid-template-columns: 1fr;
+  max-width: 440px;
+  margin-left: auto;
+  margin-right: auto;
+}
 .plan-featured {
   background: var(--crema-papel);
   border: 2px solid var(--oliva);

@@ -38,5 +38,8 @@ Los cambios tardan ~1 minuto en reflejarse en la URL pública.
 
 - Es material de cara al público: decir **"promedio"**, nunca "mediana"
   (regla de redacción del proyecto, 2026-09-19).
-- La paleta y los textos de planes salen del producto (`avii_front-main/src/theme.ts`
-  y `supabase/seed.sql` del stack principal); si cambian allá, actualizar aquí.
+- **Precio actual: $20 por consulta** (decisión del 2026-10-07). La app no se ofrece
+  al público todavía — el sitio vende el servicio por contacto directo (email/Instagram)
+  y no muestra los planes de suscripción del producto.
+- La paleta sale del producto (`avii_front-main/src/theme.ts`); si cambia allá,
+  actualizar las variables `:root` de `styles.css`.
