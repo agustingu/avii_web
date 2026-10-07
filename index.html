@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AVII — Evaluación de precios inmobiliarios en Panamá</title>
+  <meta name="description" content="AVII evalúa el precio de tu apartamento en Ciudad de Panamá comparándolo con miles de inmuebles reales del mercado. Descubre si tu precio está por encima o por debajo del promedio de la zona." />
+  <meta name="theme-color" content="#2F3A26" />
+  <meta property="og:title" content="AVII — ¿Cuánto vale realmente tu apartamento?" />
+  <meta property="og:description" content="Evaluación de precios inmobiliarios en Ciudad de Panamá, respaldada por miles de comparables reales del mercado." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#inicio" class="wordmark" aria-label="AVII, inicio">avii<span class="wordmark-dot">.</span></a>
+      <nav class="site-nav" id="siteNav" aria-label="Navegación principal">
+        <a href="#que-es">Qué es AVII</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#planes">Planes</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <a href="#contacto" class="btn btn-primary btn-header">Solicita tu evaluación</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="inicio">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Ciudad de Panamá</p>
+          <h1>¿Cuánto vale <em>realmente</em> tu apartamento?</h1>
+          <p class="lead">
+            AVII compara tu inmueble con miles de apartamentos reales del mercado panameño
+            y te dice si tu precio está por encima o por debajo del promedio de la zona —
+            con datos, no con corazonadas.
+          </p>
+          <div class="hero-actions">
+            <a href="#contacto" class="btn btn-primary">Solicita tu evaluación</a>
+            <a href="#como-funciona" class="btn btn-ghost">Ver cómo funciona</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <svg viewBox="0 0 420 340" role="img" aria-label="">
+            <!-- skyline -->
+            <rect x="40" y="120" width="70" height="190" rx="6" fill="#5C6B43" opacity="0.25"/>
+            <rect x="120" y="70" width="90" height="240" rx="6" fill="#5C6B43" opacity="0.45"/>
+            <rect x="220" y="110" width="75" height="200" rx="6" fill="#5C6B43" opacity="0.3"/>
+            <rect x="305" y="150" width="60" height="160" rx="6" fill="#5C6B43" opacity="0.2"/>
+            <!-- windows -->
+            <g fill="#F6F1E4" opacity="0.9">
+              <rect x="135" y="90" width="14" height="14" rx="2"/><rect x="158" y="90" width="14" height="14" rx="2"/><rect x="181" y="90" width="14" height="14" rx="2"/>
+              <rect x="135" y="116" width="14" height="14" rx="2"/><rect x="158" y="116" width="14" height="14" rx="2"/><rect x="181" y="116" width="14" height="14" rx="2"/>
+              <rect x="135" y="142" width="14" height="14" rx="2"/><rect x="181" y="142" width="14" height="14" rx="2"/>
+            </g>
+            <!-- ground -->
+            <rect x="20" y="308" width="380" height="4" rx="2" fill="#2F3A26" opacity="0.35"/>
+            <!-- price tag card -->
+            <g transform="translate(196 28)">
+              <rect x="0" y="0" width="150" height="64" rx="12" fill="#FFFDF7" stroke="#C2A46B" stroke-width="1.5"/>
+              <text x="16" y="26" font-family="system-ui, sans-serif" font-size="12" fill="#6B705C">Promedio de la zona</text>
+              <text x="16" y="50" font-family="system-ui, sans-serif" font-size="20" font-weight="700" fill="#2F3A26">$ 2,150 /m²</text>
+            </g>
+            <!-- map pin -->
+            <g transform="translate(150 170)">
+              <path d="M30 0C13.4 0 0 13.4 0 30c0 22.5 30 54 30 54s30-31.5 30-54C60 13.4 46.6 0 30 0z" fill="#C0663B"/>
+              <circle cx="30" cy="29" r="12" fill="#F6F1E4"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STATS ============ -->
+    <section class="stats">
+      <div class="container stats-inner">
+        <div class="stat">
+          <span class="stat-number">+9,000</span>
+          <span class="stat-label">apartamentos analizados</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">+3,900</span>
+          <span class="stat-label">servicios y puntos de interés mapeados</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">1</span>
+          <span class="stat-label">informe claro, listo para compartir en PDF</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ QUÉ ES ============ -->
+    <section class="section" id="que-es">
+      <div class="container">
+        <p class="eyebrow">Qué es AVII</p>
+        <h2>Tu precio, frente al mercado real</h2>
+        <p class="section-lead">
+          Poner precio a un inmueble a ciegas cuesta dinero: muy alto y no se vende,
+          muy bajo y pierdes. AVII pone tu apartamento en contexto con evidencia del
+          mercado de Ciudad de Panamá.
+        </p>
+        <div class="cards">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Comparables reales</h3>
+            <p>Evaluamos tu inmueble contra apartamentos similares de tu zona — por ubicación, área y habitaciones — no contra promedios genéricos de toda la ciudad.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 21s-7-7.1-7-12a7 7 0 0 1 14 0c0 4.9-7 12-7 12z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+            </div>
+            <h3>Ubicación y servicios</h3>
+            <p>Mapa interactivo con supermercados, escuelas, hospitales, bancos y más alrededor de tu inmueble, con tiempos de viaje estimados.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h16M8 16v-5m4 5V8m4 8v-3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Posición en el mercado</h3>
+            <p>Te decimos si tu precio está por encima, por debajo o en línea con el promedio de la zona, y en qué rango se mueve el mercado.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm7 0v5h5M9 13h6M9 17h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Informe en PDF</h3>
+            <p>Cada evaluación genera un informe profesional con mapa, comparativa y servicios cercanos, listo para compartir con clientes o compradores.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CÓMO FUNCIONA ============ -->
+    <section class="section section-alt" id="como-funciona">
+      <div class="container">
+        <p class="eyebrow">Cómo funciona</p>
+        <h2>Tres pasos, minutos — no semanas</h2>
+        <ol class="steps">
+          <li class="step">
+            <span class="step-number">1</span>
+            <h3>Ubica tu inmueble</h3>
+            <p>Marca tu apartamento en el mapa e ingresa sus datos básicos: área, habitaciones, baños y el precio que tienes en mente.</p>
+          </li>
+          <li class="step">
+            <span class="step-number">2</span>
+            <h3>Lo comparamos con el mercado</h3>
+            <p>Nuestra tecnología, apoyada en inteligencia artificial, busca apartamentos similares en tu zona y analiza sus precios y características.</p>
+          </li>
+          <li class="step">
+            <span class="step-number">3</span>
+            <h3>Recibes tu evaluación</h3>
+            <p>Precio estimado, promedio y rango de la zona, posición de tu precio frente al mercado, servicios cercanos y tu informe en PDF.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ PARA QUIÉN ============ -->
+    <section class="section" id="para-quien">
+      <div class="container">
+        <p class="eyebrow">Para quién</p>
+        <h2>Hecho para decidir con confianza</h2>
+        <div class="audience">
+          <div class="audience-item">
+            <h3>Propietarios</h3>
+            <p>Pon un precio competitivo desde el día uno y vende o alquila más rápido.</p>
+          </div>
+          <div class="audience-item">
+            <h3>Compradores</h3>
+            <p>Sabe si el precio que te piden es justo antes de hacer una oferta.</p>
+          </div>
+          <div class="audience-item">
+            <h3>Corredores y agentes</h3>
+            <p>Respalda tus recomendaciones con datos y entrega informes profesionales a tus clientes.</p>
+          </div>
+          <div class="audience-item">
+            <h3>Empresas e inversores</h3>
+            <p>Evalúa portafolios y oportunidades con acceso API y volumen de consultas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PLANES ============ -->
+    <section class="section section-alt" id="planes">
+      <div class="container">
+        <p class="eyebrow">Planes</p>
+        <h2>Empieza gratis, crece cuando lo necesites</h2>
+        <div class="plans">
+          <article class="plan">
+            <h3>Personal</h3>
+            <p class="plan-price"><span class="plan-amount">Gratis</span></p>
+            <p class="plan-desc">Para explorar el mercado inmobiliario con evaluaciones básicas.</p>
+            <ul>
+              <li>5 consultas</li>
+              <li>Acceso al mapa interactivo</li>
+              <li>Evaluación con IA</li>
+              <li>Comparativa de mercado</li>
+            </ul>
+            <a href="#contacto" class="btn btn-ghost btn-block">Solicitar acceso</a>
+          </article>
+          <article class="plan plan-featured">
+            <p class="plan-badge">Más popular</p>
+            <h3>Profesional</h3>
+            <p class="plan-price"><span class="plan-amount">$19.99</span> /mes</p>
+            <p class="plan-desc">Para corredores y agentes de bienes raíces.</p>
+            <ul>
+              <li>50 consultas al mes</li>
+              <li>Todo lo del plan Personal</li>
+              <li>Búsquedas avanzadas</li>
+              <li>Historial de consultas</li>
+              <li>Soporte prioritario</li>
+            </ul>
+            <a href="#contacto" class="btn btn-primary btn-block">Solicitar acceso</a>
+          </article>
+          <article class="plan">
+            <h3>Comercial</h3>
+            <p class="plan-price"><span class="plan-amount">$49.99</span> /mes</p>
+            <p class="plan-desc">Para empresas e inversores inmobiliarios.</p>
+            <ul>
+              <li>200 consultas al mes</li>
+              <li>Todo lo del plan Profesional</li>
+              <li>Acceso API completo</li>
+              <li>Usuarios ilimitados</li>
+              <li>Soporte 24/7</li>
+            </ul>
+            <a href="#contacto" class="btn btn-ghost btn-block">Solicitar acceso</a>
+          </article>
+        </div>
+        <p class="plans-note">Precios en dólares (USD/B/.). Los planes pueden ajustarse durante el lanzamiento.</p>
+      </div>
+    </section>
+
+    <!-- ============ CONTACTO ============ -->
+    <section class="section contact" id="contacto">
+      <div class="container contact-inner">
+        <div>
+          <p class="eyebrow eyebrow-light">Contacto</p>
+          <h2>Hablemos de tu inmueble</h2>
+          <p class="section-lead contact-lead">
+            Estamos en lanzamiento. Escríbenos y te contactamos para tu primera
+            evaluación o para una demostración del servicio.
+          </p>
+        </div>
+        <div class="contact-actions">
+          <a class="btn btn-light" href="mailto:contacto@avii.com?subject=Quiero%20una%20evaluaci%C3%B3n%20con%20AVII">
+            contacto@avii.com
+          </a>
+          <a class="btn btn-ghost-light" href="https://www.instagram.com/avii.pa" target="_blank" rel="noopener">
+            Instagram @avii.pa
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="wordmark wordmark-footer">avii<span class="wordmark-dot">.</span></p>
+      <p class="footer-legal">
+        Las evaluaciones de AVII son estimaciones generadas con apoyo de inteligencia artificial
+        a partir de datos del mercado y se ofrecen solo como referencia: no constituyen un avalúo
+        certificado, asesoría financiera ni una oferta de compra o venta.
+      </p>
+      <p class="footer-copy">© <span id="year">2026</span> AVII · Ciudad de Panamá</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const toggle = document.getElementById('navToggle');
+    const nav = document.getElementById('siteNav');
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
+</body>
+</html>
