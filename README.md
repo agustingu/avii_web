@@ -4,7 +4,10 @@ Landing page de [AVII](https://www.instagram.com/avii.pa) — evaluación de pre
 inmobiliarios en Ciudad de Panamá.
 
 Sitio estático (HTML + CSS puros, sin build) publicado con **GitHub Pages**:
-https://agustingu.github.io/avii_web/
+https://proyectoavii.github.io/
+
+Repo: `proyectoavii/proyectoavii.github.io` (organización `proyectoavii`; el nombre
+`<org>.github.io` es lo que hace que el sitio se sirva en la raíz, sin subruta).
 
 ## Estructura
 
