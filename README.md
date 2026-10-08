@@ -14,8 +14,29 @@ Repo: `proyectoavii/proyectoavii.github.io` (organización `proyectoavii`; el no
 ```
 index.html        # toda la página (una sola landing)
 styles.css        # estilos — la paleta de marca vive en las variables :root
-assets/           # favicon y recursos
+assets/           # favicon, informe-ejemplo-avii.pdf y demás recursos
+pdf/              # generador del informe de ejemplo (ver abajo)
 .nojekyll         # desactiva Jekyll en GitHub Pages
+```
+
+## Informe PDF de ejemplo
+
+`assets/informe-ejemplo-avii.pdf` es el PDF que el sitio enlaza en la sección
+"Ejemplo". Se genera con `pdf/build_informe.mjs`, un **port 1:1 de
+`avii_front-main/src/utils/printPrediction.ts`** (el generador real del informe
+de la app) alimentado con `pdf/sample_prediction.json` — una respuesta real de
+`POST /api/predict` del stack local. Si el template de la app cambia, re-portar.
+
+Regenerar (nota: los tiles del mapa son OpenStreetMap porque CARTO exige API key
+fuera del navegador; la nota de atribución del informe lo refleja):
+
+```bash
+node pdf/build_informe.mjs
+chrome --headless=new --screenshot=pdf/map.png --window-size=720,400 \
+  --hide-scrollbars --virtual-time-budget=25000 \
+  --run-all-compositor-stages-before-draw pdf/map_page.html
+chrome --headless --print-to-pdf=assets/informe-ejemplo-avii.pdf \
+  --no-pdf-header-footer pdf/informe_ejemplo.html
 ```
 
 ## Desarrollo local

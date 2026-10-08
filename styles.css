@@ -294,6 +294,11 @@ h1 em {
   border-bottom: 2.5px solid var(--oliva);
   transform: rotate(-45deg);
 }
+.sample-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
 
 .report-card {
   background: var(--crema-papel);
@@ -461,6 +466,10 @@ h1 em {
   font-size: 0.78rem;
   color: var(--gris-verdoso);
   margin: 0;
+}
+.report-note a {
+  color: var(--terracota-oscuro);
+  font-weight: 600;
 }
 
 /* ── Para quién ── */

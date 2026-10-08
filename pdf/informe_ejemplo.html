@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Avii - Informe de ejemplo</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #111; background: #fff; }
+
+    .header { background: #2F3A26; color: #fff; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .header-brand { display: flex; align-items: center; gap: 12px; }
+    .logo { background: #fff; color: #2F3A26; width: 30px; height: 30px; font-size: 17px; font-weight: bold; display: flex; align-items: center; justify-content: center; }
+    .brand-name { font-size: 18px; font-weight: bold; }
+    .brand-sub { font-size: 9px; opacity: 0.8; margin-top: 2px; }
+    .header-date { font-size: 10px; opacity: 0.8; text-align: right; }
+
+    .sample-banner { background: #C0663B; color: #fff; padding: 6px 24px; font-size: 10px; font-weight: bold; letter-spacing: 1.5px; }
+
+    .content { padding: 18px 24px; }
+    .barrio { font-size: 20px; font-weight: bold; margin-bottom: 4px; }
+    .meta { font-size: 10px; color: #666; margin-bottom: 14px; }
+
+    .cards { display: flex; gap: 8px; margin-bottom: 14px; }
+    .card { flex: 1; background: #F2EEE1; padding: 10px 12px; border-top: 4px solid #5C6B43; }
+    .card:nth-child(2) { border-top-color: #C2A46B; }
+    .card:nth-child(3) { border-top-color: #7FA695; }
+    .card:nth-child(4) { border-top-color: #C4714B; }
+    .card-label { font-size: 9px; color: #666; margin-bottom: 3px; }
+    .card-value { font-size: 17px; font-weight: bold; }
+    .card-sub { font-size: 8px; color: #888; margin-top: 2px; }
+
+    .pill { display: inline-block; padding: 4px 14px; font-size: 11px; font-weight: bold; margin-bottom: 14px; }
+
+    .userprice { border: 1px solid; padding: 8px 12px; margin-bottom: 14px; }
+    .userprice-head { font-size: 13px; font-weight: bold; }
+    .userprice-body { font-size: 10px; color: #555; margin-top: 3px; }
+
+    .callout { background: #F1EDDE; border-left: 3px solid #5C6B43; padding: 7px 10px; font-size: 10px; color: #333; margin-bottom: 14px; }
+    .callout-warn { background: #fffbeb; border-left-color: #f59e0b; }
+    .callout-alert { background: #fef2f2; border-left-color: #dc2626; }
+
+    .section { margin-bottom: 14px; }
+    .section h3 { font-size: 11px; font-weight: bold; margin-bottom: 7px; border-bottom: 1px solid #e5e7eb; padding-bottom: 3px; }
+    .h3-note { font-weight: normal; color: #666; font-size: 9px; float: right; }
+    .avoid-break { page-break-inside: avoid; }
+
+    .percentiles { display: flex; gap: 8px; }
+    .pct { flex: 1; background: #F2EEE1; padding: 8px; text-align: center; }
+    .pct-mid { background: #F1EDDE; border: 1px solid #5C6B43; }
+    .pct-val { font-size: 14px; font-weight: bold; }
+    .pct-val2 { font-size: 11px; font-weight: bold; }
+    .pct-label { font-size: 9px; color: #666; margin-top: 2px; }
+
+    .specs { display: flex; gap: 8px; }
+    .spec-card { flex: 1; background: #F2EEE1; padding: 10px 8px; text-align: center; }
+    .spec-val { font-size: 18px; font-weight: bold; }
+    .spec-label { font-size: 9px; color: #666; margin-top: 2px; }
+
+    .interp { width: 100%; border-collapse: collapse; font-size: 10px; }
+    .interp td { padding: 4px 8px; border-top: 1px solid #e5e7eb; }
+    .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; }
+
+    .hist { width: 100%; border-collapse: collapse; font-size: 9px; }
+    .hist td { padding: 2px 4px; vertical-align: middle; }
+    .hist-range { white-space: nowrap; color: #444; width: 108px; }
+    .hist-track-cell { width: auto; }
+    .hist-track { background: #f1f5f9; height: 11px; width: 100%; }
+    .hist-bar { height: 11px; }
+    .hist-count { white-space: nowrap; color: #666; text-align: right; width: 74px; }
+    .hist-mark { white-space: nowrap; font-weight: bold; width: 118px; }
+
+    .boxplot { display: block; border: 1px solid #e5e7eb; }
+
+    .map-img { width: 100%; border: 1px solid #e5e7eb; display: block; }
+    .legend { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 6px; font-size: 9px; color: #555; }
+    .legend-item { display: flex; align-items: center; gap: 4px; }
+    .legend-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+    .legend-box { width: 10px; height: 8px; display: inline-block; border: 1px solid; }
+    .legend-line { width: 10px; height: 2px; display: inline-block; }
+    .legend-tri { width: 0; height: 0; display: inline-block; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 8px solid #C4714B; }
+    .legend-ring { width: 8px; height: 8px; border-radius: 50%; display: inline-block; border: 1.5px solid #10b981; background: #ecfdf5; }
+
+    .services { width: 100%; border-collapse: collapse; font-size: 10px; }
+    .services thead { display: table-header-group; }
+    .services tr { page-break-inside: avoid; }
+    .services th { text-align: left; padding: 4px 8px; background: #F2EEE1; font-size: 9px; color: #666; }
+    .services td { padding: 4px 8px; }
+    .services tr.even td { background: #f9fafb; }
+    .svc-num { display: inline-block; min-width: 15px; height: 15px; line-height: 15px; padding: 0 2px; border-radius: 8px; color: #fff; font-size: 8px; font-weight: bold; text-align: center; }
+    .approx { color: #b45309; font-weight: bold; }
+
+    .legal { page-break-inside: avoid; border: 1px solid #e5e7eb; padding: 10px 12px; margin-top: 14px; }
+    .legal h4 { font-size: 10px; margin-bottom: 5px; }
+    .legal p, .legal li { font-size: 8px; color: #555; line-height: 1.45; }
+    .legal ol { margin: 0 0 0 14px; }
+    .legal li { margin-bottom: 3px; }
+
+    .footer { border-top: 1px solid #e5e7eb; padding: 8px 24px; font-size: 9px; color: #999; display: flex; justify-content: space-between; margin-top: 8px; }
+
+    @media print {
+      body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      @page { margin: 10mm; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-brand">
+      <div class="logo">A</div>
+      <div>
+        <div class="brand-name">Avii</div>
+        <div class="brand-sub">Analisis de Inversion Inmobiliaria</div>
+      </div>
+    </div>
+    <div class="header-date">
+      07/10/2026 19:05<br/>
+      Reporte estimativo - no es un avalúo
+    </div>
+  </div>
+  <div class="sample-banner">INFORME DE EJEMPLO — generado con datos reales del mercado para un inmueble de muestra</div>
+
+  <div class="content">
+    <div class="barrio">San Francisco</div>
+    <p class="meta">
+      Modelo: comparables-v1
+       | Coordenadas del mapa
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">Precio Total Estimado</div>
+        <div class="card-value">$165,439</div>
+        <div class="card-sub">San Francisco</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Precio por m2</div>
+        <div class="card-value">$1,946</div>
+        <div class="card-sub">metro cuadrado</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Referencia de Mercado</div>
+        <div class="card-value">$192,569</div>
+        <div class="card-sub">mediana del mercado</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Tu Precio</div>
+        <div class="card-value">$185,000</div>
+        <div class="card-sub">precio ingresado</div>
+      </div>
+    </div>
+
+    
+  <p class="meta" style="margin:-8px 0 12px">
+    $7,569 (3.93%)
+    por debajo del mercado
+  </p>
+    
+  <div class="userprice" style="background:#fef2f2;border-color:#dc2626">
+    <div class="userprice-head" style="color:#dc2626">Tu precio de compra: $185,000</div>
+    <div class="userprice-body">
+      Está <strong style="color:#dc2626">11.8%</strong>
+      por encima del valor estimado ($165,439)
+      &nbsp;|&nbsp; Diferencia: <strong style="color:#dc2626">+$19,561</strong>
+    </div>
+  </div>
+
+    <div class="pill" style="background:#6b728024;color:#6b7280">En línea con el mercado  (-3.9%)</div>
+
+    
+    
+  <div class="callout">
+    Referencia de mercado: <strong>$192,569</strong> (1415 comparables).
+     Radio de análisis: 1.5 km.
+  </div>
+    
+  <div class="section">
+    <h3>Rango de Confianza <span class="h3-note">Confianza estimada: 48%</span></h3>
+    <div class="percentiles">
+      <div class="pct"><div class="pct-val">$125,405</div><div class="pct-label">Conservador (P10)</div></div>
+      <div class="pct pct-mid"><div class="pct-val">$165,439</div><div class="pct-label">Probable (P50)</div></div>
+      <div class="pct"><div class="pct-val">$298,808</div><div class="pct-label">Optimista (P90)</div></div>
+    </div>
+    <p class="meta" style="margin:5px 0 0">El rango P10–P90 expresa la incertidumbre del modelo: el valor real puede ubicarse fuera de ese rango.</p>
+  </div>
+    
+  <div class="section">
+    <h3>Referencia de Interpretación</h3>
+    <table class="interp">
+      
+        <tr style="">
+          <td style="width:14px"><span class="dot" style="background:#10b981"></span></td>
+          <td style="">Por debajo del valor de mercado</td>
+          <td style="text-align:right;color:#666">Desviación < −15%</td>
+        </tr>
+        <tr style="background:#f59e0b18">
+          <td style="width:14px"><span class="dot" style="background:#f59e0b"></span></td>
+          <td style="font-weight:bold">En línea con el mercado &nbsp;←&nbsp; resultado de esta consulta</td>
+          <td style="text-align:right;color:#666">−15% a +15%</td>
+        </tr>
+        <tr style="">
+          <td style="width:14px"><span class="dot" style="background:#dc2626"></span></td>
+          <td style="">Por encima del valor de mercado</td>
+          <td style="text-align:right;color:#666">Desviación > +15%</td>
+        </tr>
+    </table>
+  </div>
+    
+  <div class="section">
+    <h3>Características del Inmueble</h3>
+    <div class="specs">
+      
+        <div class="spec-card">
+          <div class="spec-val">2</div>
+          <div class="spec-label">Habitaciones</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-val">2</div>
+          <div class="spec-label">Baños</div>
+        </div>
+        <div class="spec-card">
+          <div class="spec-val">85</div>
+          <div class="spec-label">m²</div>
+        </div>
+    </div>
+  </div>
+    
+  <div class="section avoid-break">
+    <h3>Distribución del Mercado (Histograma)</h3>
+    <table class="hist">
+      <tr>
+        <td class="hist-range">$67.9K – $97.9K</td>
+        <td class="hist-track-cell">
+          <div class="hist-track"><div class="hist-bar" style="width:6.074766355140187%;background:#6E7F4B"></div></div>
+        </td>
+        <td class="hist-count">26 (2.0%)</td>
+        <td class="hist-mark"></td>
+      </tr>
+      <tr>
+        <td class="hist-range">$97.9K – $128K</td>
+        <td class="hist-track-cell">
+          <div class="hist-track"><div class="hist-bar" style="width:31.074766355140188%;background:#6E7F4B"></div></div>
+        </td>
+        <td class="hist-count">133 (10.4%)</td>
+        <td class="hist-mark"></td>
+      </tr>
+      <tr>
+        <td class="hist-range">$128K – $158K</td>
+        <td class="hist-track-cell">
+          <div class="hist-track"><div class="hist-bar" style="width:100%;background:#6E7F4B"></div></div>
+        </td>
+        <td class="hist-count">428 (33.4%)</td>
+        <td class="hist-mark"></td>
+      </tr>
+      <tr>
+        <td class="hist-range">$158K – $188K</td>
+        <td class="hist-track-cell">
+          <div class="hist-track"><div class="hist-bar" style="width:85.04672897196261%;background:#C4714B"></div></div>
+        </td>
+        <td class="hist-count">364 (28.4%)</td>
+        <td class="hist-mark"><span style="color:#dc2626">◄ Estimado</span> <span style="color:#C4714B">◄ Tu precio</span></td>
+      </tr>
+      <tr>
+        <td class="hist-range">$188K – $218K</td>
+        <td class="hist-track-cell">
+          <div class="hist-track"><div class="hist-bar" style="width:37.38317757009346%;background:#6E7F4B"></div></div>
+        </td>
+        <td class="hist-count">160 (12.5%)</td>
+        <td class="hist-mark"></td>
+      </tr>
+      <tr>
+        <td class="hist-range">$218K – $248K</td>
+        <td class="hist-track-cell">
+          <div class="hist-track"><div class="hist-bar" style="width:16.121495327102803%;background:#6E7F4B"></div></div>
+        </td>
+        <td class="hist-count">69 (5.4%)</td>
+        <td class="hist-mark"></td>
+      </tr>
+      <tr>
+        <td class="hist-range">$248K – $278K</td>
+        <td class="hist-track-cell">
+          <div class="hist-track"><div class="hist-bar" style="width:11.448598130841122%;background:#6E7F4B"></div></div>
+        </td>
+        <td class="hist-count">49 (3.8%)</td>
+        <td class="hist-mark"></td>
+      </tr>
+      <tr>
+        <td class="hist-range">$278K – $308.1K</td>
+        <td class="hist-track-cell">
+          <div class="hist-track"><div class="hist-bar" style="width:12.616822429906541%;background:#6E7F4B"></div></div>
+        </td>
+        <td class="hist-count">54 (4.2%)</td>
+        <td class="hist-mark"></td>
+      </tr></table>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-dot" style="background:#6E7F4B"></span>Propiedades comparables por rango de precio</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#C4714B"></span>Rango donde cae el valor estimado</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#dc2626"></span>Marcas de posición del estimado y de tu precio</span>
+    </div>
+  </div>
+    
+  <div class="section avoid-break">
+    <h3>Distribución de Precios en la Zona</h3>
+    <svg class="boxplot" viewBox="0 0 660 104" width="100%" height="104">
+      <line x1="26" y1="56" x2="634" y2="56" stroke="#9ca3af" stroke-width="2"/>
+      <line x1="26" y1="44" x2="26" y2="68" stroke="#9ca3af" stroke-width="2"/>
+      <line x1="634" y1="44" x2="634" y2="68" stroke="#9ca3af" stroke-width="2"/>
+      <rect x="212.96863391801176" y="40" width="168.63485083204236" height="32" fill="rgba(110,127,75,0.25)" stroke="#6E7F4B" stroke-width="2"/>
+      <line x1="272.8819482617894" y1="38" x2="272.8819482617894" y2="74" stroke="#ef4444" stroke-width="3"/>
+      <circle cx="272.8819482617894" cy="56" r="6" fill="#10b981" stroke="#059669" stroke-width="2"/>
+      <polygon points="322.40924158379556,32 315.40924158379556,20 329.40924158379556,20" fill="#C4714B" stroke="#A85A32" stroke-width="1.5"/>
+      <text x="26" y="98" font-size="10" fill="#6b7280" text-anchor="start">$67,932</text>
+      <text x="634" y="98" font-size="10" fill="#6b7280" text-anchor="end">$308,064</text>
+    </svg>
+    <div class="percentiles" style="margin-top:4px">
+      <div class="pct"><div class="pct-val2">$67,932</div><div class="pct-label">Mínimo</div></div>
+      <div class="pct"><div class="pct-val2">$141,776</div><div class="pct-label">Q1</div></div>
+      <div class="pct pct-mid"><div class="pct-val2">$165,439</div><div class="pct-label">Mediana</div></div>
+      <div class="pct"><div class="pct-val2">$208,379</div><div class="pct-label">Q3</div></div>
+      <div class="pct"><div class="pct-val2">$308,064</div><div class="pct-label">Máximo</div></div>
+    </div>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-box" style="background:rgba(110,127,75,0.25);border-color:#6E7F4B"></span>Q1–Q3 (rango central)</span>
+      <span class="legend-item"><span class="legend-line" style="background:#ef4444"></span>Mediana: $165,439</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#10b981"></span>Estimado del modelo: $165,439</span>
+      <span class="legend-item"><span class="legend-tri"></span>Tu precio: $185,000</span>
+    </div>
+  </div>
+    
+  <div class="section avoid-break">
+    <h3>Ubicación y Servicios Cercanos</h3>
+    <img class="map-img" src="map.png" alt="Mapa de la zona"/>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-dot" style="background:#5C6B43"></span>Ubicación consultada</span>
+      <span class="legend-item"><span class="legend-ring"></span>Área de análisis (1.5 km)</span>
+      
+    <span class="legend-item"><span class="legend-dot" style="background:#8b5cf6"></span>Farmacia</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#16a34a"></span>Supermercado</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#3B7DC8"></span>Colegio</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#64748b"></span>Oficinas</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#22c55e"></span>Tienda</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#dc2626"></span>Hospital</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#f59e0b"></span>Recreativo</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#0891b2"></span>Bus</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#0ea5e9"></span>Metro</span>
+    </div>
+    <p class="meta" style="margin-top:5px">Los números del mapa corresponden a la tabla de servicios cercanos. Mapa © OpenStreetMap.</p>
+  </div>
+    
+  <div class="section">
+    <h3>Servicios Cercanos (79)</h3>
+    <table class="services">
+      <thead><tr><th style="width:22px">#</th><th>Nombre</th><th>Tipo</th><th style="text-align:right">Distancia</th><th style="text-align:right">Tiempo en carro</th></tr></thead>
+      <tbody>
+        
+          <tr class="even">
+            <td><span class="svc-num" style="background:#8b5cf6">1</span></td>
+            <td>Sealy´s<span class="approx">*</span></td>
+            <td style="color:#666">Farmacia</td>
+            <td style="color:#666;text-align:right">0.03 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#16a34a">2</span></td>
+            <td>Sealy´s<span class="approx">*</span></td>
+            <td style="color:#666">Supermercado</td>
+            <td style="color:#666;text-align:right">0.03 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#3B7DC8">3</span></td>
+            <td>La Escuelita de los Niños<span class="approx">*</span></td>
+            <td style="color:#666">Colegio</td>
+            <td style="color:#666;text-align:right">0.09 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#8b5cf6">4</span></td>
+            <td>Al lado de Farmacia Arrocha<span class="approx">*</span></td>
+            <td style="color:#666">Farmacia</td>
+            <td style="color:#666;text-align:right">0.09 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#8b5cf6">5</span></td>
+            <td>FarmaValue Calle 50<span class="approx">*</span></td>
+            <td style="color:#666">Farmacia</td>
+            <td style="color:#666;text-align:right">0.10 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#64748b">6</span></td>
+            <td>CC BROTHERHOOD<span class="approx">*</span></td>
+            <td style="color:#666">Oficinas</td>
+            <td style="color:#666;text-align:right">0.12 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#8b5cf6">7</span></td>
+            <td>Metro Plus | Calle 50<span class="approx">*</span></td>
+            <td style="color:#666">Farmacia</td>
+            <td style="color:#666;text-align:right">0.15 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#64748b">8</span></td>
+            <td>P.H. TORRE A.M.W. | Cocige<span class="approx">*</span></td>
+            <td style="color:#666">Oficinas</td>
+            <td style="color:#666;text-align:right">0.16 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#3B7DC8">9</span></td>
+            <td>Wisdom Kids Academy</td>
+            <td style="color:#666">Colegio</td>
+            <td style="color:#666;text-align:right">0.16 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#64748b">10</span></td>
+            <td>The Velopers<span class="approx">*</span></td>
+            <td style="color:#666">Oficinas</td>
+            <td style="color:#666;text-align:right">0.17 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#64748b">11</span></td>
+            <td>Gordon, Gonzalez &amp; Asociados. Centro de Capacitacion<span class="approx">*</span></td>
+            <td style="color:#666">Oficinas</td>
+            <td style="color:#666;text-align:right">0.18 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#64748b">12</span></td>
+            <td>Grupo Martucci<span class="approx">*</span></td>
+            <td style="color:#666">Oficinas</td>
+            <td style="color:#666;text-align:right">0.18 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#64748b">13</span></td>
+            <td>Luxury Road Magazine International<span class="approx">*</span></td>
+            <td style="color:#666">Oficinas</td>
+            <td style="color:#666;text-align:right">0.18 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#64748b">14</span></td>
+            <td>Wood Concept, S. A.<span class="approx">*</span></td>
+            <td style="color:#666">Oficinas</td>
+            <td style="color:#666;text-align:right">0.18 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#8b5cf6">15</span></td>
+            <td>Farmacia Saba Calle 50<span class="approx">*</span></td>
+            <td style="color:#666">Farmacia</td>
+            <td style="color:#666;text-align:right">0.18 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#16a34a">16</span></td>
+            <td>Raw Cold Press Panama</td>
+            <td style="color:#666">Supermercado</td>
+            <td style="color:#666;text-align:right">0.19 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#64748b">17</span></td>
+            <td>Printea Panamá</td>
+            <td style="color:#666">Oficinas</td>
+            <td style="color:#666;text-align:right">0.19 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#64748b">18</span></td>
+            <td>AllBioPanama</td>
+            <td style="color:#666">Oficinas</td>
+            <td style="color:#666;text-align:right">0.19 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#22c55e">19</span></td>
+            <td>Tienda La Malagueña</td>
+            <td style="color:#666">Tienda</td>
+            <td style="color:#666;text-align:right">0.19 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#64748b">20</span></td>
+            <td>K&amp;G Services<span class="approx">*</span></td>
+            <td style="color:#666">Oficinas</td>
+            <td style="color:#666;text-align:right">0.20 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#64748b">21</span></td>
+            <td>Refrigeración Automotriz RL<span class="approx">*</span></td>
+            <td style="color:#666">Oficinas</td>
+            <td style="color:#666;text-align:right">0.21 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#3B7DC8">22</span></td>
+            <td>Journey</td>
+            <td style="color:#666">Colegio</td>
+            <td style="color:#666;text-align:right">0.21 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#16a34a">23</span></td>
+            <td>SUPER JALAL</td>
+            <td style="color:#666">Supermercado</td>
+            <td style="color:#666;text-align:right">0.22 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#3B7DC8">24</span></td>
+            <td>Centro Infantil Mis Ositos</td>
+            <td style="color:#666">Colegio</td>
+            <td style="color:#666;text-align:right">0.22 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#64748b">25</span></td>
+            <td>L2 Arquitectos</td>
+            <td style="color:#666">Oficinas</td>
+            <td style="color:#666;text-align:right">0.22 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#8b5cf6">26</span></td>
+            <td>FarmaLab</td>
+            <td style="color:#666">Farmacia</td>
+            <td style="color:#666;text-align:right">0.24 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#dc2626">27</span></td>
+            <td>P.H. Medical center fort bragg usa</td>
+            <td style="color:#666">Hospital</td>
+            <td style="color:#666;text-align:right">0.26 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#8b5cf6">28</span></td>
+            <td>Farmacias Arrocha | Calle 50</td>
+            <td style="color:#666">Farmacia</td>
+            <td style="color:#666;text-align:right">0.26 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#16a34a">29</span></td>
+            <td>Mister Market</td>
+            <td style="color:#666">Supermercado</td>
+            <td style="color:#666;text-align:right">0.27 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#8b5cf6">30</span></td>
+            <td>Pet Care &amp; Control Services (PCCS)</td>
+            <td style="color:#666">Farmacia</td>
+            <td style="color:#666;text-align:right">0.28 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#3B7DC8">31</span></td>
+            <td>Harmony Homeschooling Center</td>
+            <td style="color:#666">Colegio</td>
+            <td style="color:#666;text-align:right">0.29 km</td>
+            <td style="color:#666;text-align:right">1-8 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#16a34a">32</span></td>
+            <td>AMPM • Vía Israel<span class="approx">*</span></td>
+            <td style="color:#666">Supermercado</td>
+            <td style="color:#666;text-align:right">0.31 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#3B7DC8">33</span></td>
+            <td>El Principiot Pre-school<span class="approx">*</span></td>
+            <td style="color:#666">Colegio</td>
+            <td style="color:#666;text-align:right">0.32 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#dc2626">34</span></td>
+            <td>ThetaSalud Panama Weight Loss Center</td>
+            <td style="color:#666">Hospital</td>
+            <td style="color:#666;text-align:right">0.32 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#8b5cf6">35</span></td>
+            <td>FARMALife</td>
+            <td style="color:#666">Farmacia</td>
+            <td style="color:#666;text-align:right">0.33 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#3B7DC8">36</span></td>
+            <td>Tareas al rescate</td>
+            <td style="color:#666">Colegio</td>
+            <td style="color:#666;text-align:right">0.34 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#3B7DC8">37</span></td>
+            <td>The King's School</td>
+            <td style="color:#666">Colegio</td>
+            <td style="color:#666;text-align:right">0.34 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#3B7DC8">38</span></td>
+            <td>Playful Learning Lab</td>
+            <td style="color:#666">Colegio</td>
+            <td style="color:#666;text-align:right">0.35 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#8b5cf6">39</span></td>
+            <td>Biotechnology Group</td>
+            <td style="color:#666">Farmacia</td>
+            <td style="color:#666;text-align:right">0.36 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#22c55e">40</span></td>
+            <td>Multimarket Kim</td>
+            <td style="color:#666">Tienda</td>
+            <td style="color:#666;text-align:right">0.38 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#3B7DC8">41</span></td>
+            <td>Italian Enrico Fermi Institute</td>
+            <td style="color:#666">Colegio</td>
+            <td style="color:#666;text-align:right">0.38 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#8b5cf6">42</span></td>
+            <td>Farmacias + Salud</td>
+            <td style="color:#666">Farmacia</td>
+            <td style="color:#666;text-align:right">0.39 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#3B7DC8">43</span></td>
+            <td>Wisdom Academy High School Calle 50<span class="approx">*</span></td>
+            <td style="color:#666">Colegio</td>
+            <td style="color:#666;text-align:right">0.39 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#8b5cf6">44</span></td>
+            <td>YourPharmacy</td>
+            <td style="color:#666">Farmacia</td>
+            <td style="color:#666;text-align:right">0.40 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#3B7DC8">45</span></td>
+            <td>JARDIN DE NIÑOS<span class="approx">*</span></td>
+            <td style="color:#666">Colegio</td>
+            <td style="color:#666;text-align:right">0.41 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#16a34a">46</span></td>
+            <td>Mini Market Express</td>
+            <td style="color:#666">Supermercado</td>
+            <td style="color:#666;text-align:right">0.43 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#dc2626">47</span></td>
+            <td>Clínica Dr. Badiola - Medicina Estética</td>
+            <td style="color:#666">Hospital</td>
+            <td style="color:#666;text-align:right">0.44 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#22c55e">48</span></td>
+            <td>Zaz Food Store | Calle 50</td>
+            <td style="color:#666">Tienda</td>
+            <td style="color:#666;text-align:right">0.46 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#22c55e">49</span></td>
+            <td>La Tiendita San Francisco</td>
+            <td style="color:#666">Tienda</td>
+            <td style="color:#666;text-align:right">0.46 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#16a34a">50</span></td>
+            <td>La Tiendita San Francisco</td>
+            <td style="color:#666">Supermercado</td>
+            <td style="color:#666;text-align:right">0.46 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#22c55e">51</span></td>
+            <td>ZAZ Food Store San Francisco</td>
+            <td style="color:#666">Tienda</td>
+            <td style="color:#666;text-align:right">0.52 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#22c55e">52</span></td>
+            <td>La Tienda Blanquirroja - Productos Peruanos</td>
+            <td style="color:#666">Tienda</td>
+            <td style="color:#666;text-align:right">0.52 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#dc2626">53</span></td>
+            <td>MediCenter</td>
+            <td style="color:#666">Hospital</td>
+            <td style="color:#666;text-align:right">0.54 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#16a34a">54</span></td>
+            <td>Supermarket Riba Smith</td>
+            <td style="color:#666">Supermercado</td>
+            <td style="color:#666;text-align:right">0.55 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#dc2626">55</span></td>
+            <td>Avanti Centro | Rehabilitacion Integral</td>
+            <td style="color:#666">Hospital</td>
+            <td style="color:#666;text-align:right">0.56 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#16a34a">56</span></td>
+            <td>My Market</td>
+            <td style="color:#666">Supermercado</td>
+            <td style="color:#666;text-align:right">0.58 km</td>
+            <td style="color:#666;text-align:right">2-9 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#dc2626">57</span></td>
+            <td>Resonancia Magnetica Open Side Panama</td>
+            <td style="color:#666">Hospital</td>
+            <td style="color:#666;text-align:right">0.63 km</td>
+            <td style="color:#666;text-align:right">3-10 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#dc2626">58</span></td>
+            <td>Hospivet</td>
+            <td style="color:#666">Hospital</td>
+            <td style="color:#666;text-align:right">0.63 km</td>
+            <td style="color:#666;text-align:right">3-10 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#16a34a">59</span></td>
+            <td>Fruteria E.Z.</td>
+            <td style="color:#666">Supermercado</td>
+            <td style="color:#666;text-align:right">0.63 km</td>
+            <td style="color:#666;text-align:right">3-10 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#16a34a">60</span></td>
+            <td>Organica Store San Francisco</td>
+            <td style="color:#666">Supermercado</td>
+            <td style="color:#666;text-align:right">0.65 km</td>
+            <td style="color:#666;text-align:right">3-10 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#dc2626">61</span></td>
+            <td>Clinica pinzon<span class="approx">*</span></td>
+            <td style="color:#666">Hospital</td>
+            <td style="color:#666;text-align:right">0.67 km</td>
+            <td style="color:#666;text-align:right">3-10 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#16a34a">62</span></td>
+            <td>Supermercados Rey | Calle 50</td>
+            <td style="color:#666">Supermercado</td>
+            <td style="color:#666;text-align:right">0.67 km</td>
+            <td style="color:#666;text-align:right">3-10 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#22c55e">63</span></td>
+            <td>Perle Swimwear</td>
+            <td style="color:#666">Tienda</td>
+            <td style="color:#666;text-align:right">0.71 km</td>
+            <td style="color:#666;text-align:right">3-10 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#dc2626">64</span></td>
+            <td>Avansalud</td>
+            <td style="color:#666">Hospital</td>
+            <td style="color:#666;text-align:right">0.73 km</td>
+            <td style="color:#666;text-align:right">3-10 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#dc2626">65</span></td>
+            <td>Dra. Sulem Cedeño | Dermatología Integrativa y Funcional en Panamá<span class="approx">*</span></td>
+            <td style="color:#666">Hospital</td>
+            <td style="color:#666;text-align:right">0.77 km</td>
+            <td style="color:#666;text-align:right">3-10 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#dc2626">66</span></td>
+            <td>Policlinica Carlos N. Brin CSS</td>
+            <td style="color:#666">Hospital</td>
+            <td style="color:#666;text-align:right">0.77 km</td>
+            <td style="color:#666;text-align:right">3-10 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#dc2626">67</span></td>
+            <td>SMA<span class="approx">*</span></td>
+            <td style="color:#666">Hospital</td>
+            <td style="color:#666;text-align:right">0.77 km</td>
+            <td style="color:#666;text-align:right">3-10 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#22c55e">68</span></td>
+            <td>ZAZ Food Store | Villa Lilla</td>
+            <td style="color:#666">Tienda</td>
+            <td style="color:#666;text-align:right">0.78 km</td>
+            <td style="color:#666;text-align:right">3-10 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#f59e0b">69</span></td>
+            <td>parque omar</td>
+            <td style="color:#666">Recreativo</td>
+            <td style="color:#666;text-align:right">0.81 km</td>
+            <td style="color:#666;text-align:right">3-10 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#22c55e">70</span></td>
+            <td>mini super san francisco</td>
+            <td style="color:#666">Tienda</td>
+            <td style="color:#666;text-align:right">0.81 km</td>
+            <td style="color:#666;text-align:right">3-10 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#22c55e">71</span></td>
+            <td>PLATANITOS SPOT BY ASH</td>
+            <td style="color:#666">Tienda</td>
+            <td style="color:#666;text-align:right">0.84 km</td>
+            <td style="color:#666;text-align:right">3-10 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#22c55e">72</span></td>
+            <td>AMPM | Via Porras</td>
+            <td style="color:#666">Tienda</td>
+            <td style="color:#666;text-align:right">0.86 km</td>
+            <td style="color:#666;text-align:right">3-10 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#22c55e">73</span></td>
+            <td>Charcutería 1903</td>
+            <td style="color:#666">Tienda</td>
+            <td style="color:#666;text-align:right">0.88 km</td>
+            <td style="color:#666;text-align:right">4-11 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#f59e0b">74</span></td>
+            <td>Parque Omar<span class="approx">*</span></td>
+            <td style="color:#666">Recreativo</td>
+            <td style="color:#666;text-align:right">1.03 km</td>
+            <td style="color:#666;text-align:right">4-11 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#0891b2">75</span></td>
+            <td>Obarrio</td>
+            <td style="color:#666">Bus</td>
+            <td style="color:#666;text-align:right">1.25 km</td>
+            <td style="color:#666;text-align:right">5-12 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#0ea5e9">76</span></td>
+            <td>Fernández de Córdoba Metro Station</td>
+            <td style="color:#666">Metro</td>
+            <td style="color:#666;text-align:right">1.31 km</td>
+            <td style="color:#666;text-align:right">5-12 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#0891b2">77</span></td>
+            <td>Parada de Marbella (el pio pio)</td>
+            <td style="color:#666">Bus</td>
+            <td style="color:#666;text-align:right">1.41 km</td>
+            <td style="color:#666;text-align:right">5-12 min</td>
+          </tr>
+          <tr class="">
+            <td><span class="svc-num" style="background:#0ea5e9">78</span></td>
+            <td>Vía Argentina</td>
+            <td style="color:#666">Metro</td>
+            <td style="color:#666;text-align:right">1.41 km</td>
+            <td style="color:#666;text-align:right">5-12 min</td>
+          </tr>
+          <tr class="even">
+            <td><span class="svc-num" style="background:#0891b2">79</span></td>
+            <td>Vía Fernández de Córdoba / Calle 64 Oeste</td>
+            <td style="color:#666">Bus</td>
+            <td style="color:#666;text-align:right">1.46 km</td>
+            <td style="color:#666;text-align:right">5-12 min</td>
+          </tr>
+      </tbody>
+    </table>
+    <p class="meta" style="margin:5px 0 0">
+      Lista completa de los servicios dentro del área de análisis. La distancia es en línea recta desde el punto consultado;
+      el tiempo en carro se muestra como rango porque se calcula a partir de esa distancia y no del recorrido real ni del tráfico.
+      <br/>* 24 servicio(s) con posición aproximada (coordenada reconstruida, no medida).
+    </p>
+  </div>
+
+    <div class="callout callout-alert">
+      <strong>Este modelo puede cometer errores, como cualquier sistema de IA. Úsalo como apoyo y no como única fuente para tomar decisiones.</strong>
+    </div>
+
+    <div class="legal">
+      <h4>Aviso legal y limitaciones del reporte</h4>
+      <ol>
+        <li><strong>Naturaleza del documento.</strong> Este reporte es una estimación estadística generada automáticamente por un modelo de inteligencia artificial a partir de datos de mercado disponibles. <strong>No constituye un avalúo, tasación, peritaje ni certificación de valor</strong>, ni una oferta, recomendación o asesoría financiera, legal, fiscal o de inversión.</li>
+        <li><strong>No sustituye la debida diligencia.</strong> Antes de cualquier decisión o transacción, el usuario debe realizar su propia verificación: avalúo con profesional idóneo, inspección física del inmueble, estudio de título y registro público, y asesoría legal y financiera independiente.</li>
+        <li><strong>Fuentes y vigencia.</strong> La estimación se basa en información de terceros y en datos históricos disponibles a la fecha de generación (07/10/2026 19:05). Dichas fuentes pueden contener errores, estar incompletas o desactualizadas. El mercado inmobiliario cambia: el contenido de este reporte pierde vigencia con el tiempo.</li>
+        <li><strong>Incertidumbre de la estimación.</strong> El rango P10–P90 refleja la incertidumbre del modelo; el valor real de una transacción puede ubicarse fuera de ese rango. Las cifras de mercado dependen de la cantidad y calidad de los comparables encontrados en la zona (en este reporte: 1415).</li>
+        <li><strong>Servicios cercanos, distancias y tiempos.</strong> Las distancias son en línea recta desde el punto consultado y los tiempos de traslado son estimados a partir de esa distancia, sin considerar la ruta real, el estado de las vías ni el tráfico; por eso se presentan como rango. Algunas ubicaciones de servicios son aproximadas (coordenadas reconstruidas) y se marcan como tales.</li>
+        <li><strong>Limitación de responsabilidad.</strong> Avii no garantiza la exactitud, integridad, actualidad ni idoneidad de este reporte para un fin particular, y no asume responsabilidad alguna por decisiones tomadas con base en él ni por daños o perjuicios directos, indirectos, incidentales o consecuentes derivados de su uso. El uso de la información es responsabilidad exclusiva del usuario.</li>
+        <li><strong>Uso del documento.</strong> Este reporte se genera para el usuario que realizó la consulta y tiene carácter informativo. No debe presentarse ante entidades financieras, autoridades o terceros como avalúo o certificación de valor, ni reproducirse de forma parcial que altere su sentido.</li>
+        <li><strong>Términos aplicables.</strong> El uso de la plataforma y de este reporte se rige por los Términos y Condiciones y la Política de Privacidad de Avii vigentes.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Avii | proyectoavii.github.io</span>
+    <span>Generado el 07/10/2026 a las 19:05</span>
+  </div>
+  
+</body>
+</html>
